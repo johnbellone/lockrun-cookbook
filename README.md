@@ -1,4 +1,11 @@
 # lockrun-cookbook
+![Release](http://img.shields.io/github/release/johnbellone/lockrun-cookbook.svg)
+[![Build Status](http://img.shields.io/travis/johnbellone/lockrun-cookbook.svg)][travis]
+[![Code Climate](http://img.shields.io/codeclimate/github/johnbellone/lockrun-cookbook.svg)][codeclimate]
+
+[travis]: http://travis-ci.org/johnbellone/lockrun-cookbook
+[codeclimate]: https://codeclimate.com/github/johnbellone/lockrun-cookbook
+
 Installs [lockrun][1] executable for running cronjobs with overrun
 protection.
 
