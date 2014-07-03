@@ -18,7 +18,7 @@ end
 
 output_executable = File.join(node['lockrun']['install_prefix'], 'lockrun')
 bash 'build-lockrun' do
-  command (<<-CODE)
+  code (<<-CODE)
 /usr/bin/env cc #{lockrun_file} -o #{output_executable}
 chmod 0755 #{output_executable}
 CODE

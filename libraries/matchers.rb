@@ -1,16 +1,9 @@
-#
-# Cookbook Name:: lockrun
-# Library:: matchers
-#
-# Copyright (C) 2014 John Bellone (<jbellone@bloomberg.net>)
-#
-
 if defined?(ChefSpec)
-  def create_lockrun_cron(resource_name)
-    ChefSpec::Matchers::ResourceMatcher.new(:lockrun_cron, :create, resource_name)
+  def create_lockrun_cron(name)
+    ChefSpec::Matchers::ResourceMatcher.new(:lockrun_cron, :create, name)
   end
 
   def delete_lockrun_cron(resource_name)
-    ChefSpec::Matchers::ResourceMatcher.new(:lockrun_cron, :delete, resource_name)
+    ChefSpec::Matchers::ResourceMatcher.new(:lockrun_cron, :delete, name)
   end
 end
