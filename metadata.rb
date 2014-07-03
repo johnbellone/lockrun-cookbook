@@ -16,5 +16,4 @@ supports 'ubuntu', '= 14.04'
 supports 'ubuntu', '= 12.04'
 
 depends 'build-essential'
-depends 'cron'
 depends 'poise'

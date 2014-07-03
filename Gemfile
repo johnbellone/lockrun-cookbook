@@ -6,6 +6,7 @@ gem 'rspec'
 
 group :development, :test do
   gem 'test-kitchen'
+  gem 'kitchen-vagrant'
   gem 'guard-kitchen'
   gem 'guard-rspec'
   gem 'chefspec'
