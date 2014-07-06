@@ -20,10 +20,16 @@ protection.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['lockrun']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['lockrun']['install_prefix']</tt></td>
+    <td>String</td>
+    <td>Location to install executable.</td>
+    <td><tt>/usr/local/bin</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['lockrun']['lock_path']</tt></td>
+    <td>String</td>
+    <td>Location to store lockrun files.</td>
+    <td><tt>/var/run</tt></td>
   </tr>
 </table>
 
