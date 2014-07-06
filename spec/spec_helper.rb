@@ -2,6 +2,9 @@ require 'chefspec'
 require 'chefspec/berkshelf'
 require 'chefspec/cacher'
 require 'chefspec/server'
+require 'coveralls'
+
+Coveralls.wear!
 
 RSpec.configure do |config|
   config.filter_run :focus
