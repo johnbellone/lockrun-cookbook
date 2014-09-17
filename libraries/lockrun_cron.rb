@@ -26,9 +26,9 @@ class Chef
       # Wrap the command (see Chef::Resource::Cron#command) with a statement
       # based on the resource attributes configured.
       cmd = "/usr/bin/env lockrun --lockfile=#{lockfile}"
-      cmd << ' --quiet' if quiet?
-      cmd << ' --wait' if wait?
-      cmd << ' --verbose' if verbose?
+      cmd << ' --quiet' if quiet
+      cmd << ' --wait' if wait
+      cmd << ' --verbose' if verbose
       cmd << " --maxtime=#{maxtime}" if maxtime
       super cmd.concat(" -- #{arg}")
     end
