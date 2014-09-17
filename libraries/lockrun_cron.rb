@@ -10,6 +10,11 @@ class Chef
   class Resource::LockrunCron < Resource::Cron
     include Poise
 
+    def initialize(name, run_context=nil)
+      super
+      @resource_name = :lockrun_cron
+    end
+
     attribute(:lockfile, kind_of: String, default: lazy { })
     attribute(:maxtime, kind_of: Integer, default: nil)
     attribute(:quiet, kind_of: [TrueClass, FalseClass], default: false)
