@@ -8,12 +8,12 @@ include_recipe 'build-essential::default'
 
 directory node['lockrun']['lock_path'] do
   recursive true
-  not_if { Dir.exist? node['lockrun']['lock_path'] }
+  not_if { ::Dir.exist? node['lockrun']['lock_path'] }
 end
 
 lockrun_file = File.join(Chef::Config[:file_cache_path], 'lockrun.c')
 cookbook_file lockrun_file do
-  not_if { File.exist? lockrun_file }
+  not_if { ::File.exist? lockrun_file }
 end
 
 output_executable = File.join(node['lockrun']['install_prefix'], 'lockrun')
@@ -22,5 +22,5 @@ bash 'build-lockrun' do
 /usr/bin/env cc #{lockrun_file} -o #{output_executable}
 chmod 0755 #{output_executable}
 CODE
-  not_if { File.exist? output_executable }
+  not_if { ::File.exist? output_executable }
 end
