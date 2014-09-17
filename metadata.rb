@@ -2,9 +2,9 @@ name             'lockrun'
 maintainer       'John Bellone'
 maintainer_email 'jbellone@bloomberg.net'
 license          'Apache 2.0'
-description      'Installs/Configures lockrun'
-long_description 'Installs/Configures lockrun'
-version          '0.1.0'
+description      'Installs lockrun executable for running cronjobs with overrun protection.'
+long_description 'Installs lockrun executable for running cronjobs with overrun protection.'
+version          '0.2.0'
 
 %w(centos redhat).each do |name|
   supports name, '~> 7.0'
