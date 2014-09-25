@@ -15,7 +15,7 @@ class Chef
       @resource_name = :lockrun_cron
     end
 
-    attribute(:lockfile, kind_of: String, default: lazy { "/var/lock/lockrun/#{name}" })
+    attribute(:lockfile, kind_of: String, default: lazy { ::File.join(node['lockrun']['lock_path'], name) })
     attribute(:maxtime, kind_of: Integer, default: nil)
     attribute(:quiet, kind_of: [TrueClass, FalseClass], default: false)
     attribute(:verbose, kind_of: [TrueClass, FalseClass], default: false)
