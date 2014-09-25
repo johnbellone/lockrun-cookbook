@@ -15,7 +15,7 @@ class Chef
       @resource_name = :lockrun_cron
     end
 
-    attribute(:lockfile, kind_of: String, default: lazy { })
+    attribute(:lockfile, kind_of: String, default: lazy { "/var/lock/lockrun/#{name}" })
     attribute(:maxtime, kind_of: Integer, default: nil)
     attribute(:quiet, kind_of: [TrueClass, FalseClass], default: false)
     attribute(:verbose, kind_of: [TrueClass, FalseClass], default: false)
@@ -36,6 +36,19 @@ class Chef
       cmd << ' --verbose' if verbose
       cmd << " --maxtime=#{maxtime}" if maxtime
       super cmd.concat(" -- #{arg}")
+    end
+  end
+
+  class Provider::LockrunCron < Provider::Cron
+    include Poise
+
+    def action_create
+      lockfile_path = ::File.dirname(new_resource.lockfile)
+      directory lockfile_path  do
+        not_if { ::Dir.exist?(lockfile_path) }
+      end
+
+      super
     end
   end
 end
