@@ -8,8 +8,6 @@ include_recipe 'build-essential::default'
 
 directory node['lockrun']['lock_path'] do
   recursive true
-  group node['lockrun']['group']
-  mode 0774
   not_if { ::Dir.exist? node['lockrun']['lock_path'] }
 end
 

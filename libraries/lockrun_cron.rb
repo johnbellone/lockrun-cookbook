@@ -46,8 +46,6 @@ class Chef
       lockfile_path = ::File.dirname(new_resource.lockfile)
       directory lockfile_path  do
         recursive true
-        group node['lockrun']['group']
-        mode 0774
         not_if { ::Dir.exist?(lockfile_path) }
       end
 
