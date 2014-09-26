@@ -35,7 +35,7 @@ class Chef
       cmd << ' --wait' if wait
       cmd << ' --verbose' if verbose
       cmd << " --maxtime=#{maxtime}" if maxtime
-      super cmd.concat(" -- #{arg}")
+      super cmd.concat(%Q( -- sh -c '#{arg}'))
     end
   end
 
