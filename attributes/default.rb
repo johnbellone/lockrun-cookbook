@@ -6,3 +6,4 @@
 #
 default['lockrun']['install_prefix'] = '/usr/local/bin'
 default['lockrun']['lock_path'] = '/var/run/lockrun'
+default['lockrun']['group'] = 'daemon'
