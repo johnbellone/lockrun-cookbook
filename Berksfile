@@ -1,7 +1,6 @@
-source "https://api.berkshelf.com"
-
+source 'https://supermarket.chef.io'
 metadata
 
 group :test do
-  cookbook 'fixture', path: 'spec/fixtures/cookbook'
+  cookbook 'test', path: 'test/fixtures/test-cookbook'
 end

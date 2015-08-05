@@ -1,8 +1,9 @@
 #
-# Cookbook Name:: lockrun
-# Attribute:: default
+# Cookbook: lockrun
+# License: Apache 2.0
 #
-# Copyright (C) 2014 John Bellone (<jbellone@bloomberg.net>)
+# Copyright (C) 2014, 2015 Bloomberg Finance L.P.
 #
-default['lockrun']['install_prefix'] = '/usr/local/bin'
-default['lockrun']['lock_path'] = '/var/lock'
+default['lockrun']['package_name'] = 'lockrun'
+default['lockrun']['package_version'] = '1.1.3'
+default['lockrun']['install_method'] = 'package'

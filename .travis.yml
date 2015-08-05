@@ -1,22 +1,17 @@
+---
 language: ruby
-script: rspec
+notifications:
+slack: blpsi:eHp3Czg42iGzaTgG8sAFeD9v
+script: 
+  - bin/rubocop
+  - bin/foodcritic .
+  - bin/rspec
 rvm:
-  - 1.9.3
-  - 2.0.0
   - 2.1
+  - 2.2
 branches:
   only:
     - master
 builder_args: --jobs 7
-notifications:
-  irc:
-    channels:
-      - 'chat.freenode.net#bloomberg'
-    use_notice: true
-    skip_join: true
-    template:
-      - "%{message} (%{author}): %{build_url}"
 matrix:
   fast_finish: true
-  
-  

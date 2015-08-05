@@ -1,16 +1,46 @@
 source 'https://rubygems.org'
+gem 'poise', '~> 2.0'
+gem 'poise-boiler'
 
-gem 'berkshelf', '~> 3.1'
-gem 'rake'
-gem 'rspec'
-gem 'foodcritic'
-gem 'rubocop'
-gem 'coveralls', require: false
+group :lint do
+  gem 'rubocop'
+end
 
-group :development, :test do
-  gem 'test-kitchen'
-  gem 'kitchen-vagrant'
+group :kitchen_common do
+  gem 'test-kitchen', '~> 1.4'
+end
+
+group :kitchen_vagrant do
+  gem 'kitchen-vagrant', '~> 0.17'
+end
+
+group :kitchen_cloud do
+  gem 'kitchen-openstack', '~> 1.8'
+end
+
+group :unit do
+  gem 'berkshelf', git: 'https://github.com/berkshelf/berkshelf'
+  gem 'berkshelf-api-client', git: 'https://github.com/berkshelf/berkshelf-api-client'
+  gem 'faraday', git: 'https://github.com/lostisland/faraday'
+  gem 'ridley', git: 'https://github.com/johnbellone/ridley'
+
+  gem 'chefspec'
+end
+
+group :integration do
+  gem 'serverspec'
+end
+
+group :development do
+  gem 'awesome_print'
+  gem 'guard'
   gem 'guard-kitchen'
   gem 'guard-rspec'
-  gem 'chefspec'
+  gem 'guard-rubocop'
+  gem 'rake'
+  gem 'stove'
+end
+
+group :doc do
+  gem 'yard'
 end

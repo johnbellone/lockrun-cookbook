@@ -1,12 +1,14 @@
 require 'chefspec'
 require 'chefspec/berkshelf'
 require 'chefspec/cacher'
-require 'chefspec/server'
-require 'coveralls'
-
-Coveralls.wear!
 
 RSpec.configure do |config|
+  config.platform = 'ubuntu'
+  config.version = '14.04'
+
+  config.color = true
+  config.alias_example_group_to :describe_recipe, type: :recipe
+
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
 
