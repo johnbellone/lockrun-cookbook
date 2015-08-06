@@ -12,4 +12,6 @@ supports 'centos', '>= 5.4'
 supports 'redhat', '>= 5.4'
 supports 'ubuntu', '>= 12.04'
 
+depends 'build-essential'
+depends 'libarchive', '~> 0.6'
 depends 'poise', '~> 2.0'
