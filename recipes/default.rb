@@ -15,7 +15,7 @@ if node['lockrun']['install_method'] == 'binary'
   basename = File.basename(node['lockrun']['binary_url'])
   remote_file File.join(Chef::Config[:file_cache_path], basename) do
     source node['lockrun']['binary_url']
-    checksum node['lockrun']['binary_checksum']
+    checksum node['lockrun']['binary_checksum'] if node['lockrun']['binary_checksum']
     notifies :extract, "libarchive_file[#{basename}]", :immediately
   end
 
