@@ -1,56 +1,43 @@
 # lockrun-cookbook
 ![Release](http://img.shields.io/github/release/johnbellone/lockrun-cookbook.svg)
-[![Build Status](http://img.shields.io/travis/johnbellone/lockrun-cookbook.svg)][3]
-[![Code Coverage](http://img.shields.io/coveralls/johnbellone/lockrun-cookbook.svg)][4]
+[![Build Status](http://img.shields.io/travis/johnbellone/lockrun-cookbook.svg)][2]
+[![Code Coverage](http://img.shields.io/coveralls/johnbellone/lockrun-cookbook.svg)][3]
 
-Installs [lockrun][1] executable for running cronjobs with overrun
+Installs the [lockrun][0] executable for running cronjobs with overrun
 protection.
 
-## Supported Platforms
-- CentOS 7.0, 6.4, 5.8
-- Ubuntu 14.04, 12.04
+## Basic Usage
+This cookbook is extremely useful when you only want to have a _single_
+process running at a time. We use this to ensure that there is only ever
+one Chef Client running at a time. If a process already has the lock it
+bails out immediately.
 
-## Attributes
+Instead of writing a wrapper script every time you want this
+functionality simply use the lockrun executable. It counts the number
+of open file descriptors to a lockfile on disk.
+```ruby
+include_recipe 'lockrun::default'
 
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['lockrun']['install_prefix']</tt></td>
-    <td>String</td>
-    <td>Location to install executable.</td>
-    <td><tt>/usr/local/bin</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['lockrun']['lock_path']</tt></td>
-    <td>String</td>
-    <td>Location to store lockrun files.</td>
-    <td><tt>/var/run</tt></td>
-  </tr>
-</table>
+sleep_time = 0
+unless node['chef_client']['splay'].to_i == 0
+  checksum   = Digest::MD5.hexdigest(node['fqdn'] || 'unknown-hostname')
+  sleep_time = checksum.to_s.hex % node['chef_client']['splay'].to_i
+end
 
-## Usage
-
-### lockrun::default
-
-Include `lockrun` in your node's `run_list`:
-
-```json
-{
-  "run_list": [
-    "recipe[lockrun::default]"
-  ]
-}
+lockrun_cron 'chef-client' do
+  command "/bin/sleep #{sleep_time}; chef-client > /dev/null 2>&1"
+  cron_options(minute: '0', hour: '*', weekday: '*')
+end
 ```
-## License and Authors
 
-Author:: [John Bellone][2] (<jbellone@bloomberg.net>)
+Out of the box the following platforms are certified to work and
+are tested using our [Test Kitchen][8] configuration. Additional platforms
+_may_ work, but your mileage may vary.
+- CentOS (RHEL) 5.8, 6.6, 7.1
+- Ubuntu 12.04, 14.04
 
-[1]: http://www.unixwiz.net/tools/lockrun.html
-[2]: https://github.com/johnbellone
-[3]: http://travis-ci.org/johnbellone/lockrun-cookbook
-[4]: https://coveralls.io/r/johnbellone/lockrun-cookbook
+
+[0]: http://www.unixwiz.net/tools/lockrun.html
+[1]: https://github.com/johnbellone
+[2]: http://travis-ci.org/johnbellone/lockrun-cookbook
+[3]: https://coveralls.io/r/johnbellone/lockrun-cookbook
