@@ -14,6 +14,7 @@ module LockrunCookbook
       provides(:lockrun_cron)
 
       attribute(:command, kind_of: [String, Array], required: true)
+      attribute(:lockfile_path, kind_of: String, default: '/var/run')
       attribute(:maxtime, kind_of: Integer)
       attribute(:quiet, equal_to: [true, false], default: false)
       attribute(:wait, equal_to: [true, false], default: false)
@@ -24,7 +25,7 @@ module LockrunCookbook
       # @since 1.0.0
       action(:create) do
         lockrun = ['/usr/bin/env lockrun']
-        lockrun << ['--lockfile', "/var/run/#{new_resource.name}.lockrun"].join('=')
+        lockrun << ['--lockfile', "#{new_resource.lockfile_path}/#{new_resource.name}.lockrun"].join('=')
         lockrun << ['--maxtime', new_resource.maxtime].join('=') if new_resource.maxtime
         lockrun << '--quiet' if new_resource.quiet
         lockrun << '--wait' if new_resource.wait
