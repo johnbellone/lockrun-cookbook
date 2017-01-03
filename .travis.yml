@@ -4,13 +4,13 @@ notifications:
   slack: bloomberg-rnd:eHp3Czg42iGzaTgG8sAFeD9v
 env:
   matrix:
-    - TEST=rubocop
+    - TEST=cookstyle
     - TEST="foodcritic ."
     - TEST="chef exec rspec"
 before_install:
   - chef --version
   - eval "$(chef shell-init bash)"
-  - rubocop --version
+  - cookstyle --version
   - foodcritic --version
 install:
   - berks

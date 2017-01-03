@@ -1,5 +1,5 @@
 # More info at https://github.com/guard/guard#readme
-guard 'rubocop' do
+guard :rubocop, cli: '-r cookstyle' do
   watch(%r{^attributes/.+\.rb$})
   watch(%r{^providers/.+\.rb$})
   watch(%r{^recipes/.+\.rb$})
