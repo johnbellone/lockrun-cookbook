@@ -7,7 +7,6 @@ script:
   - bin/foodcritic .
   - bin/rspec
 rvm:
-  - 2.1
   - 2.2
 branches:
   only:
