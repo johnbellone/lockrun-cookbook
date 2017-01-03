@@ -2,15 +2,33 @@
 language: ruby
 notifications:
   slack: bloomberg-rnd:eHp3Czg42iGzaTgG8sAFeD9v
-script: 
-  - bin/rubocop
-  - bin/foodcritic .
-  - bin/rspec
+env:
+  matrix:
+    - TEST=rubocop
+    - TEST="foodcritic ."
+    - TEST="chef exec rspec"
+before_install:
+  - chef --version
+  - eval "$(chef shell-init bash)"
+  - rubocop --version
+  - foodcritic --version
+install:
+  - berks
+script:
+  - "$TEST"
 rvm:
   - 2.2
+cache:
+  directories:
+    - "$HOME/.berkshelf"
+addons:
+  apt:
+    sources:
+      - chef-stable-precise
+    packages:
+      - chefdk
 branches:
   only:
     - master
-builder_args: --jobs 7
 matrix:
   fast_finish: true
