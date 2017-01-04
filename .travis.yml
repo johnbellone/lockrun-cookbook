@@ -2,16 +2,35 @@
 language: ruby
 notifications:
   slack: bloomberg-rnd:eHp3Czg42iGzaTgG8sAFeD9v
-script: 
-  - bin/rubocop
-  - bin/foodcritic .
-  - bin/rspec
+env:
+  matrix:
+    - TEST=cookstyle
+    - TEST="foodcritic ."
+    - TEST="chef exec rspec"
+before_install:
+  - chef --version
+  - eval "$(chef shell-init bash)"
+  - cookstyle --version
+  - foodcritic --version
+install:
+  - berks
+  - chef gem install poise -v '~> 2.0'
+  - chef gem install poise-boiler
+script:
+  - "$TEST"
 rvm:
-  - 2.1
   - 2.2
+cache:
+  directories:
+    - "$HOME/.berkshelf"
+addons:
+  apt:
+    sources:
+      - chef-stable-precise
+    packages:
+      - chefdk
 branches:
   only:
     - master
-builder_args: --jobs 7
 matrix:
   fast_finish: true
