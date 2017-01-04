@@ -2,5 +2,5 @@ source 'https://supermarket.chef.io'
 metadata
 
 group :test do
-  cookbook 'test', path: 'test/fixtures/test-cookbook'
+  cookbook 'test-lockrun', path: 'test/fixtures/test-lockrun'
 end
