@@ -25,8 +25,8 @@ module LockrunCookbook
       # @since 1.0.0
       action(:create) do
         lockrun = ['/usr/bin/env lockrun']
-        lockrun << ['--lockfile', "#{new_resource.lockfile_path}/#{new_resource.name}.lockrun"].join('=')
-        lockrun << ['--maxtime', new_resource.maxtime].join('=') if new_resource.maxtime
+        lockrun << "--lockfile=#{new_resource.lockfile_path}/#{new_resource.name}.lockrun"
+        lockrun << "--maxtime=#{new_resource.maxtime}" if new_resource.maxtime
         lockrun << '--quiet' if new_resource.quiet
         lockrun << '--wait' if new_resource.wait
         lockrun << '--verbose' if new_resource.verbose
