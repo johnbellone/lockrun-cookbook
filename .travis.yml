@@ -14,6 +14,8 @@ before_install:
   - foodcritic --version
 install:
   - berks
+  - chef gem install poise -v '~> 2.0'
+  - chef gem install poise-boiler
 script:
   - "$TEST"
 rvm:
