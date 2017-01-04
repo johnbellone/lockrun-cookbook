@@ -10,7 +10,7 @@ platforms:
   - name: ubuntu-12.04
   - name: centos-7.1
   - name: centos-6.6
-g
+
 suites:
   - name: default
     run_list:
