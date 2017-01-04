@@ -15,4 +15,4 @@ platforms:
 suites:
   - name: default
     run_list:
-      - "recipe[test-lockrun::default]"
+      - "recipe[test::default]"
