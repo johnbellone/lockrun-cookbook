@@ -10,7 +10,7 @@ supports 'aix'
 supports 'solaris2'
 supports 'centos', '>= 5.4'
 supports 'redhat', '>= 5.4'
-supports 'ubuntu', '>= 12.04'
+supports 'ubuntu', '>= 14.04'
 
 depends 'build-essential'
 depends 'libarchive', '~> 0.6'
