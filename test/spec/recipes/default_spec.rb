@@ -8,7 +8,7 @@ describe_recipe 'lockrun::default' do
 
     it do
       expect(chef_run).to create_cookbook_file('/tmp/lockrun.c')
-      .with(source: 'lockrun.c')
+        .with(source: 'lockrun.c')
     end
 
     it { expect(chef_run).to run_execute('gcc -o /usr/local/bin/lockrun /tmp/lockrun.c') }
@@ -40,8 +40,8 @@ describe_recipe 'lockrun::default' do
 
     it do
       expect(chef_run).to create_remote_file('/tmp/lockrun.tar.gz')
-      .with(source: 'http://foo.bar.baz/lockrun.tar.gz')
-      .with(checksum: 'deadb33f')
+        .with(source: 'http://foo.bar.baz/lockrun.tar.gz')
+        .with(checksum: 'deadb33f')
     end
 
     it do

@@ -13,9 +13,9 @@ describe LockrunCookbook::Resource::LockrunCron do
 
     it do
       is_expected.to create_cron('chef-client')
-      .with(command: '/usr/bin/env lockrun --lockfile=/var/run/chef-client.lockrun -- chef-client')
-      .with(minute: '0', weekday: '*', hour: '*')
-      .with(environment: { 'PATH' => '/usr/local/bin:/usr/bin:/bin' })
+        .with(command: '/usr/bin/env lockrun --lockfile=/var/run/chef-client.lockrun -- chef-client')
+        .with(minute: '0', weekday: '*', hour: '*')
+        .with(environment: { 'PATH' => '/usr/local/bin:/usr/bin:/bin' })
     end
   end
 
