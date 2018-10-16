@@ -8,8 +8,8 @@ version '1.1.0'
 
 supports 'aix'
 supports 'solaris2'
-supports 'centos', '>= 5.4'
-supports 'redhat', '>= 5.4'
+supports 'centos', '>= 6.7'
+supports 'redhat', '>= 6.7'
 supports 'ubuntu', '>= 14.04'
 
 depends 'build-essential'
