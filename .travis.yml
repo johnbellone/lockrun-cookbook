@@ -7,9 +7,6 @@ notifications:
 env:
   global:
     - KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
-  matrix:
-    - CHEF_VERSION=13
-    - CHEF_VERSION=14
 before_install:
   - chef --version
   - eval "$(chef shell-init bash)"
@@ -32,6 +29,9 @@ jobs:
       script:
         - chef exec kitchen converge
         - chef exec kitchen verify
+      env:
+        - CHEF_VERSION=13
+        - CHEF_VERSION=14
 cache:
   directories:
     - "$HOME/.berkshelf"
