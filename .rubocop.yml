@@ -1,6 +1,0 @@
----
-AllCops:
-  Exclude:
-    - 'Guardfile'
-    - 'test/**/*.rb'
-    - 'bin/*'
