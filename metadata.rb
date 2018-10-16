@@ -1,7 +1,7 @@
 name 'lockrun'
 maintainer 'John Bellone'
 maintainer_email 'jbellone@bloomberg.net'
-license 'Apache 2.0'
+license 'Apache-2.0'
 description 'Installs lockrun executable for running cronjobs with overrun protection.'
 long_description 'Installs lockrun executable for running cronjobs with overrun protection.'
 version '1.1.0'
