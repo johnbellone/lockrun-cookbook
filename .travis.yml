@@ -28,7 +28,6 @@ jobs:
       script:
         - cookstyle
         - foodcritic .
-        - chef exec rspec
     - stage: acceptance
       script:
         - chef exec kitchen converge
