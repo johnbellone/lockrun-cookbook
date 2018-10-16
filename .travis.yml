@@ -7,6 +7,9 @@ notifications:
 env:
   global:
     - KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+  matrix:
+    - CHEF_VERSION=13
+    - CHEF_VERSION=14
 before_install:
   - chef --version
   - eval "$(chef shell-init bash)"
@@ -19,19 +22,18 @@ install:
 before_script:
   # https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142455888
   - sudo iptables -L DOCKER || sudo iptables -N DOCKER
+script:
+  - chef exec kitchen converge
+  - chef exec kitchen verify
 jobs:
   include:
     - stage: verify
       script:
         - cookstyle
         - foodcritic .
-    - stage: acceptance
-      script:
-        - chef exec kitchen converge
-        - chef exec kitchen verify
-      env:
-        - CHEF_VERSION=13
-        - CHEF_VERSION=14
+stages:
+  - verify
+  - test
 cache:
   directories:
     - "$HOME/.berkshelf"
