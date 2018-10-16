@@ -1,7 +1,15 @@
 ---
 language: ruby
+sudo: required
+services: docker
 notifications:
   slack: bloomberg-rnd:eHp3Czg42iGzaTgG8sAFeD9v
+env:
+  global:
+    - KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+  matrix:
+    - CHEF_VERSION=13
+    - CHEF_VERSION=14
 before_install:
   - chef --version
   - eval "$(chef shell-init bash)"
@@ -11,14 +19,20 @@ install:
   - berks
   - chef gem install poise -v '~> 2.0'
   - chef gem install poise-boiler
+before_script:
+  # https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142455888
+  - sudo iptables -L DOCKER || sudo iptables -N DOCKER
 jobs:
   include:
-    - stage: lint
-      script: cookstyle
-    - stage: syntax
-      script: foodcritic .
-    - stage: unit
-      script: chef exec rspec
+    - stage: verify
+      script:
+        - cookstyle
+        - foodcritic .
+        - chef exec rspec
+    - stage: acceptance
+      script:
+        - chef exec kitchen converge
+        - chef exec kitchen verify
 cache:
   directories:
     - "$HOME/.berkshelf"
