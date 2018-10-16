@@ -18,8 +18,6 @@ install:
   - chef gem install poise-boiler
 script:
   - "$TEST"
-rvm:
-  - 2.2
 cache:
   directories:
     - "$HOME/.berkshelf"
